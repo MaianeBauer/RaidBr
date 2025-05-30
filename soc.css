@@ -1,0 +1,266 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #000000;
+    overflow-x: hidden;
+}
+
+/* Área de exibição da imagem grande */
+.image-display-area {
+    width: 100%;
+    height: 70vh;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#large-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    /* text-align: center; */ /* Removido/comentado conforme sua solicitação anterior */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.image-caption h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.image-caption p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+/* Container principal da timeline */
+.timeline-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #000000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.timeline-container h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* A linha da timeline */
+.timeline {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    border-top: 4px solid #8b10a7;
+}
+
+/* Marcadores da timeline (as bolinhas) */
+.timeline-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    padding-top: 20px;
+}
+
+.timeline-marker {
+    width: 25px;
+    height: 25px;
+    background-color: #5b0763;
+    border-radius: 50%;
+    position: absolute;
+    top: -18px; /* Ajuste para ficar em cima da linha, considerando sua borda */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border: 3px solid #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker,
+.timeline-item.active .timeline-marker {
+    background-color: #4507ff;
+    transform: translateX(-50%) scale(1.2);
+    border-color: #99017d;
+}
+
+/* Data abaixo do marcador */
+.timeline-date {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-date,
+.timeline-item.active .timeline-date {
+    color: #711291;
+}
+
+/* --- ESTILOS PARA OS BOTÕES LATERAIS (NOVOS) --- */
+.side-buttons-container {
+    position: absolute; /* Posiciona absolutamente dentro de .image-display-area */
+    right: 15px; /* Distância da borda direita */
+    top: 50%; /* Alinha o topo do contêiner com o meio da altura da imagem */
+    transform: translateY(-50%); /* Ajusta para centralização vertical perfeita */
+    display: flex; /* Para os botões ficarem em coluna */
+    flex-direction: column; /* Coloca os itens em coluna */
+    gap: 8px; /* Espaço entre os botões na vertical */
+    z-index: 10; /* Garante que os botões fiquem acima da imagem */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo levemente escuro */
+    border-radius: 8px;
+}
+
+.side-button {
+    background-color: transparent; /* Fundo transparente */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Borda transparente/clara */
+    color: #fff; /* Cor do texto e ícone */
+    padding: 8px 12px; /* Preenchimento interno */
+    font-size: 0.9em; /* Tamanho da fonte */
+    cursor: pointer; /* Indica que é clicável */
+    border-radius: 5px; /* Cantos arredondados */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transição suave */
+    display: flex; /* Para alinhar ícone e texto */
+    align-items: center; /* Alinha verticalmente */
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda dentro do botão */
+    gap: 8px; /* Espaço entre o ícone e o texto */
+    width: 120px; /* Largura fixa para os botões para alinhar melhor */
+}
+
+.side-button:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Fundo sutil ao passar o mouse */
+    border-color: rgba(255, 255, 255, 0.9); /* Borda mais visível ao passar o mouse */
+}
+/* --- FIM DOS ESTILOS PARA OS BOTÕES LATERAIS --- */
+
+
+@media (max-width: 768px) {
+    .image-display-area {
+        height: 40vh;
+    }
+
+    .image-caption {
+        padding: 10px;
+    }
+
+    .image-caption h2 {
+        font-size: 1.4em;
+    }
+
+    .image-caption p {
+        font-size: 0.8em;
+    }
+
+    /* --- REGRAS DE RESPONSIVIDADE PARA OS BOTÕES LATERAIS (NOVAS) --- */
+    .side-buttons-container {
+        position: static; /* Remove o posicionamento absoluto no mobile */
+        flex-direction: row; /* Volta a ser horizontal no mobile */
+        flex-wrap: wrap; /* Permite que os botões quebrem linha */
+        justify-content: center; /* Centraliza os botões */
+        width: 100%; /* Ocupa a largura total */
+        padding: 10px 5px; /* Ajusta o padding */
+        gap: 5px; /* Menos espaço entre os botões */
+        background-color: rgba(0, 0, 0, 0.6); /* Fundo mais forte no mobile */
+        border-radius: 0; /* Remove borda arredondada */
+        transform: none; /* Remove a transformação */
+        margin-top: 10px; /* Adiciona um pequeno espaço acima se necessário */
+    }
+
+    .side-button {
+        font-size: 0.75em; /* Fonte menor no mobile */
+        padding: 6px 10px;
+        width: auto; /* Deixa a largura automática no mobile */
+    }
+    /* --- FIM DAS REGRAS DE RESPONSIVIDADE PARA OS BOTÕES LATERAIS --- */
+
+    .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        border-top: none;
+        border-left: 4px solid #824caf;
+        width: auto;
+        padding-top: 0;
+        padding-left: 30px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+    .timeline-marker {
+        top: 10px;
+        left: -14px;
+        transform: translateY(-50%);
+        margin-left: 0;
+    }
+
+    .timeline-item:hover .timeline-marker,
+    .timeline-item.active .timeline-marker {
+        transform: translateY(-50%) scale(1.2);
+    }
+
+    .timeline-date {
+        margin-top: 0;
+        margin-left: 20px;
+        display: inline-block;
+    }
+
+    /* Regras específicas para mobile para garantir que o texto apareça normalmente */
+    .image-caption #image-description {
+        white-space: normal; /* Permite quebrar linha no mobile */
+        width: auto; /* Ocupa a largura normal */
+        border-right: none; /* Remove o cursor piscante */
+        overflow: visible; /* Texto visível normalmente */
+    }
+    .typed-cursor { /* O Typed.js usa a classe 'typed-cursor' por padrão */
+        animation: none !important; /* Desativa a animação do cursor do Typed.js no mobile */
+        opacity: 0 !important; /* Garante que o cursor do Typed.js seja invisível no mobile */
+    }
+}
+
+/* Opcional: Estilize o cursor do Typed.js (por padrão é um | piscando) */
+.typed-cursor {
+    opacity: 1; /* Garante visibilidade */
+    animation: typed-cursor-blink 0.7s infinite; /* Typed.js usa esta classe para animação */
+    font-family: monospace; /* Para combinar com o texto */
+    color: rgb(110, 8, 107); /* Cor do cursor */
+}
+
+@keyframes typed-cursor-blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}

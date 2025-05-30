@@ -1,0 +1,234 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #000000;
+    overflow-x: hidden; /* Evita barra de rolagem horizontal desnecessária */
+}
+
+.timeline-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 40px 20px;
+    background-color: #000000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    padding: 20px 0;
+    border-top: 4px solid #A020F0;; /* A linha da timeline */
+    margin-top: 250px; /* Espaço para a imagem e marcador de cima */
+    margin-bottom: 250px; /* Espaço para a descrição e marcador de baixo */
+}
+
+/* Base para todos os marcadores */
+.timeline-marker {
+    width: 20px;
+    height: 20px;
+    background-color: #680061; /* Cor padrão */
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    transition: background-color 0.3s ease, transform 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 10; /* INICIALMENTE INVISÍVEL */
+    cursor: pointer;
+}
+
+/* Marcador de cima - Posição inicial na linha, antes de subir */
+.timeline-marker-top {
+    top: -12px;
+}
+
+/* Marcador de baixo - Posição inicial na linha, antes de descer */
+.timeline-marker-bottom {
+    top: -12px;
+}
+
+.timeline-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding-top: 30px; /* Espaço entre as bolinhas */
+    /* Remover o cursor: default; se quiser que o item inteiro seja clicável, mas o foco é na bolinha */
+    transition: transform 0.3s ease;
+   
+}
+
+/* ESTADO ATIVO: QUANDO O MOUSE ESTÁ NA BOLINHA (timeline-item.active é adicionado) */
+
+/* Efeito nos marcadores (bolinhas) */
+.timeline-item.active .timeline-marker {
+    background-color: #3907ff; /* Cor quando ativo */
+    opacity: 1; /* TORNA VISÍVEL */
+    visibility: hidden ; /* invisivel */
+}
+
+.timeline-item.active .timeline-marker-top {
+    transform: translateX(-50%) translateY(-50px); /* Sobe para cima */
+}
+
+.timeline-item.active .timeline-marker-bottom {
+    transform: translateX(-50%) translateY(50px); /* Desce para baixo */
+}
+
+.timeline-item.active { /* Leve movimento no próprio item ao ser ativado */
+    transform: translateY(-10px);
+}
+
+.timeline-date {
+    position: absolute;
+    top: -50px; /* Posição acima da linha da timeline */
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: #555;
+    font-size: 1.1em;
+    z-index: 3;
+    opacity: 1; /* Data sempre visível */
+    visibility: visible; /* Data sempre visível */
+}
+
+/* IMAGEM (ACIMA DA LINHA) */
+.item-image {
+    position: absolute;
+    bottom: calc(100% + 50px); /* Posição inicial: bem acima do marcador */
+    left: 50%;
+    transform: translateX(-50%) translateY(50px); /* Deslocamento inicial para esconder */
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    opacity: 0; /* INICIALMENTE INVISÍVEL */
+    visibility: hidden; /* INICIALMENTE INVISÍVEL */
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+    z-index: 10;
+}
+
+.timeline-item.active .item-image {
+    opacity: 1; /* TORNA VISÍVEL */
+    visibility: visible; /* TORNA VISÍVEL */
+    transform: translateX(-50%) translateY(0); /* Posição final: sobe para a linha de cima */
+}
+
+/* DESCRIÇÃO (ABAIXO DA LINHA) */
+.item-description {
+    position: absolute;
+    top: calc(100% + 20px); /* Posição inicial: abaixo do marcador */
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px); /* Deslocamento inicial para esconder */
+    width: 250px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    opacity: 0; /* INICIALMENTE INVISÍVEL */
+    visibility: hidden; /* INICIALMENTE INVISÍVEL */
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+    z-index: 10;
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.timeline-item.active .item-description {
+    opacity: 1; /* TORNA VISÍVEL */
+    visibility: visible; /* TORNA VISÍVEL */
+    transform: translateX(-50%) translateY(0); /* Posição final: desce para a linha de baixo */
+}
+
+/* Responsividade básica (mantida igual, mas verifique o comportamento no mobile) */
+@media (max-width: 768px) {
+    .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        border-top: none;
+        border-left: 4px solid #4CAF50;
+        margin-top: 0;
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .timeline-item {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 80px;
+        padding-top: 0;
+        padding-left: 30px;
+        align-items: flex-start;
+    }
+
+    /* Marcadores no mobile: sempre visíveis */
+    .timeline-marker-top,
+    .timeline-marker-bottom {
+        top: 20px;
+        left: -12px;
+        transform: translateY(-50%);
+        opacity: 1; /* SEMPRE VISÍVEL NO MOBILE */
+        visibility: visible; /* SEMPRE VISÍVEL NO MOBILE */
+        background-color: #4CAF50;
+    }
+    .timeline-item.active .timeline-marker-top,
+    .timeline-item.active .timeline-marker-bottom {
+        transform: translateY(-50%); /* Sem movimento extra no mobile */
+        background-color: #FFC107; /* Cor de hover no mobile */
+    }
+
+    .timeline-date {
+        top: 20px;
+        left: -80px;
+        transform: none;
+        width: 60px;
+        text-align: right;
+    }
+
+    /* Conteúdo no mobile: sempre visível e posicionado normalmente */
+    .item-image,
+    .item-description {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        opacity: 1; /* SEMPRE VISÍVEL NO MOBILE */
+        visibility: visible; /* SEMPRE VISÍVEL NO MOBILE */
+        margin-top: 15px;
+        box-shadow: none;
+        padding: 0;
+        border: none;
+    }
+
+    .item-image {
+        margin-bottom: 0;
+    }
+
+    .item-description {
+        margin-top: 10px;
+    }
+
+    .timeline-item.active .item-image,
+    .timeline-item.active .item-description {
+        transform: none;
+    }
+}

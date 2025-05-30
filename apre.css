@@ -1,0 +1,370 @@
+
+:root {
+    --primary-color:#A020F0;
+    --secondary-color: #6c757d; /* Cinza médio */
+    --background-dark: #343a40; /* Fundo escuro para contraste */
+    --text-color: #333; /* Cor de texto padrão */
+    --border-color: #dee2e6; /* Cor da borda */
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+}
+
+/* Reset básico e tipografia */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Poppins;
+}
+@font-face {
+	font-family: Poppins;
+	src: url(./fonts/Poppins-Medium.ttf);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center; /* Centraliza o container na página */
+    min-height: 100vh; /* Garante que o corpo ocupe pelo menos a altura da viewport */
+    padding: var(--spacing-md);
+    background: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima para melhor legibilidade */
+    /* background-color: #fff; */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Garante que sombras e bordas internas sejam cortadas corretamente */
+    display: flex;
+    flex-direction: column; /* Conteúdo principal em coluna, header/footer em cima/baixo */
+}
+
+/* Header */
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: var(--spacing-md);
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+
+
+header {
+  display: flex; /* Para alinhar a logo e a nav na mesma linha */
+  justify-content: space-between; /* Empurra a logo para um lado e a nav para o outro */
+  align-items: center; /* Centraliza verticalmente a logo e a nav */
+  padding: 15px 30px; /* **ESSA É A CHAVE!** 15px de padding em cima/baixo, 30px nas laterais */
+  width: 100%; /* Garante que o header ocupe toda a largura disponível */
+  background-color: hsl(0, 0%, 0%);
+  color: #fff; /* Cor do texto padrão no header */
+
+}
+
+.logo {
+  margin: 0; /* Zera a margem padrão do h1 para que o padding do header funcione */
+  font-size: 1.8rem; /* Ajuste o tamanho da sua logo */
+  font-weight: 200;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 5px;
+  justify-content: flex-end;
+}
+nav a {
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  transition: color 0.2s ease;
+  text-decoration: none;
+  color: #fff;
+}
+
+nav a:hover {
+  background-color: transparent;
+  color: #a020f0;
+}
+
+a.active {
+  background: #a020f0;
+  border-radius: 2px;
+}
+
+.timeRunning {
+  position: absolute;
+  z-index: 1;
+  width: 0%;
+  height: 4px;
+  background-color: #a020f0;
+  left: 0px;
+  animation: runningTime 7s linear 1 forwards;
+  top: 0;
+}
+
+@keyframes runningTime {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Wrapper para o conteúdo principal (descrição + imagem) */
+.content-wrapper {
+    display: flex;
+    flex-grow: 1; /* Permite que o wrapper ocupe o espaço restante */
+    flex-direction: row; /* Layout padrão: lado a lado */
+}
+
+/* Seção de Descrição */
+.description-section {
+    flex: 1; /* Ocupa 1 parte do espaço disponível */
+    padding: var(--spacing-lg);
+    background-color: #f0f4f7; /* Um fundo levemente diferente para a descrição */
+    border-right: 1px solid var(--border-color); /* Borda entre as seções */
+}
+
+.description-section h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    font-size: 2rem;
+    white-space: nowrap
+}
+
+.description-section p {
+    margin-bottom: 1rem;
+}
+
+.description-section ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.description-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Seção de Imagem/Gráfico */
+.image-section {
+    flex: 2; /* Ocupa 2 partes do espaço disponível, tornando-o maior */
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md); /* Espaçamento entre os gráficos */
+    background-color: #fff;
+    align-items: center; /* Centraliza os gráficos horizontalmente */
+}
+
+.image-section h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    font-size: 2rem;
+    text-align: center;
+}
+
+.chart-container {
+    width: 100%; /* Ocupa a largura total da seção de imagem */
+    max-width: 700px; /* Limita a largura dos gráficos para não ficarem gigantes */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: var(--background-light);
+    padding: 10px;
+    text-align: center;
+}
+
+.responsive-chart {
+    width: 100%;
+    height: auto; /* Garante que a altura se ajuste à largura */
+    display: block; /* Remove espaço extra abaixo da imagem */
+    object-fit: contain; /* Ajusta a imagem dentro do contêiner sem cortá-la */
+    background-color: #eee; /* Cor de fundo para placeholders */
+}
+
+.clickable-chart {
+    cursor: pointer; /* Adiciona o cursor de "mãozinha" para indicar que é clicável */
+    transition: transform 0.2s ease-in-out; /* Adiciona uma transição suave ao passar o mouse */
+}
+
+.clickable-chart:hover {
+    transform: scale(1.02); /* Leve aumento ao passar o mouse */
+}
+
+
+.chart-caption {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+}
+
+.conclusion-text {
+    text-align: center;
+    margin-top: var(--spacing-md);
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--background-dark);
+    color: #fff;
+    padding: var(--spacing-sm);
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- Estilos do Modal --- */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fica por cima de todo o conteúdo */
+    z-index: 1000; /* Z-index alto para garantir que fique na frente */
+    padding-top: 60px; /* Espaço do topo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se a imagem for muito grande */
+    background-color: rgba(0,0,0,0.9); /* Fundo preto semi-transparente */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 800px; /* Largura máxima para a imagem no modal */
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+}
+
+/* Legenda da imagem no modal */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px; /* Altura para a legenda */
+}
+
+/* Botão de Fechar (x) */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animação do modal */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+
+/* --- Responsividade --- */
+
+/* Para telas menores que 768px (tablets e celulares) */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column; /* Empilha as seções verticalmente */
+    }
+
+    .description-section {
+        border-right: none; /* Remove a borda direita */
+        border-bottom: 1px solid var(--border-color); /* Adiciona borda inferior */
+        padding: var(--spacing-md); /* Ajusta o padding */
+    }
+
+    .image-section {
+        padding: var(--spacing-md); /* Ajusta o padding */
+        gap: var(--spacing-sm); /* Reduz o espaçamento entre gráficos */
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .description-section h2,
+    .image-section h2 {
+        font-size: 1.8rem;
+    }
+
+    body {
+        padding: var(--spacing-sm); /* Reduz o padding do corpo */
+    }
+
+    .modal-content {
+        width: 90%; /* Ajusta a largura da imagem no modal para telas menores */
+    }
+}
+
+/* Para telas muito pequenas (smartphones) */
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .description-section h2,
+    .image-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .description-section,
+    .image-section {
+        padding: var(--spacing-sm);
+    }
+}

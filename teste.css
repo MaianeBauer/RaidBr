@@ -1,0 +1,311 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  background-color: #222;
+    overflow-x: hidden; /* Importante para esconder a barra de rolagem horizontal do carrossel */
+}
+
+/* --- SEÇÃO DO CARROSSEL DE BOTÕES (NOVA) --- */
+.button-carousel-section {
+    width: 100%; /* Ocupa a largura total da página */
+    /* overflow: hidden; Esconde os botões que saem da tela */
+    padding: 15px 0; /* Espaçamento vertical */
+    background-color: #222; /* Fundo escuro para a seção de botões */
+    margin-bottom: 20px; /* Espaço entre o carrossel e a imagem abaixo */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para destaque */
+    /* white-space: nowrap; Removido daqui, pois o .buttons-wrapper já lida com isso */
+}
+
+.buttons-wrapper {
+    display: flex;
+    white-space: nowrap; /* Impede que os botões quebrem a linha */
+    animation: scrollButtons 30s linear infinite; /* Animação de carrossel: ajuste o tempo para a velocidade */
+    /* Duplicar os botões no HTML é ESSENCIAL para que esta animação seja suave */
+}
+
+.buttons-wrapper:hover {
+    animation-play-state: paused; /* Pausa a animação ao passar o mouse */
+}
+
+.carousel-button {
+    flex-shrink: 0; /* Impede que os botões encolham */
+    padding: 12px 25px;
+    margin: 0 10px; /* Espaçamento entre os botões */
+     /* background-color: #222; */
+    animation: animationGradient 2.5s linear infinite;
+    color:  #e5e1e6;
+    /* border: none; */
+    border-radius: 30px; /* Botões arredondados */
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex; /* Para alinhar ícone e texto */
+    align-items: center;
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+    backdrop-filter: blur();
+    background-color: rgba(135, 10, 149, 0.2);
+
+
+}
+
+.carousel-button:hover {
+    background-color: #8301bb;
+    transform: translateY(-3px); /* Pequeno efeito de elevação */
+    box-shadow: 0 5px 12px rgba(160, 5, 180, 0.4);
+    color: #e2e2e2;
+}
+
+.carousel-button.active {
+    background-color:#8301bb;
+    color: #ffffff; /* Texto escuro para contraste */
+    box-shadow: 0 5px 10px rgba(159, 5, 183, 0.5);
+    transform: scale(1.05); /* Pequeno zoom no ativo */
+}
+
+/* Animação para o carrossel de botões */
+@keyframes scrollButtons {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        /* Se você duplicou os botões no HTML, -50% é um bom valor de partida. */
+        /* Isso move o wrapper pela metade de sua largura total, fazendo a transição suave. */
+        transform: translateX(-50%);
+    }
+}
+
+/* --- FIM SEÇÃO DO CARROSSEL DE BOTÕES --- */
+
+/* Área de exibição da imagem grande */
+.image-display-area {
+    width: 100%;
+    height: 70vh;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#large-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+
+
+#image-description {
+    white-space: normal !important; /* Permite quebrar linha só em espaços */
+    display: inline; /* ou inline-block se precisar de controle */
+    width: auto !important; /* Permite ocupar a largura do container */
+    overflow-wrap: break-word; /* Quebra a linha só se for necessário para a palavra muito longa */
+    word-break: normal; /* Mantém as palavras juntas, sem quebra no meio */
+    border-right: none !important; /* Remova qualquer borda que simule cursor aqui */
+   
+}
+
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    transition: opacity 0.5s ease-in-out;
+}
+
+
+.image-caption h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.image-caption p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+/* Container principal da timeline */
+.timeline-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #000000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.timeline-container h1 {
+    color: #eee; /* Corrigido para ser visível no fundo preto */
+    margin-bottom: 30px;
+}
+
+/* A linha da timeline */
+.timeline {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    border-top: 4px solid #8b10a7;
+}
+
+/* Marcadores da timeline (as bolinhas) */
+.timeline-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    padding-top: 20px;
+}
+
+.timeline-marker {
+    width: 25px;
+    height: 25px;
+    background-color: #5b0763;
+    border-radius: 50%;
+    position: absolute;
+    top: -18px; /* Ajuste para ficar em cima da linha, considerando sua borda */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border: 3px solid #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker,
+.timeline-item.active .timeline-marker {
+    background-color: #4507ff;
+    transform: translateX(-50%) scale(1.2);
+    border-color: #99017d;
+}
+
+/* Data abaixo do marcador */
+.timeline-date {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #999; /* Ajustado para ser visível no fundo preto */
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.timeline-item:hover .timeline-date,
+.timeline-item.active .timeline-date {
+    color: #711291;
+}
+
+/* Opcional: Estilize o cursor do Typed.js (por padrão é um | piscando) */
+.typed-cursor {
+    font-family: monospace;             /* Mantém o cursor alinhado */
+    color: rgb(110, 8, 107);            /* Cor do cursor */
+    opacity: 1;
+    animation: typed-cursor-blink 0.7s infinite;
+}
+@keyframes typed-cursor-blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* --- REGRAS DE RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .image-display-area {
+        height: 40vh;
+    }
+
+    .image-caption {
+        padding: 10px;
+    }
+
+    .image-caption h2 {
+        font-size: 1.4em;
+    }
+
+    .image-caption p {
+        font-size: 0.8em;
+    }
+
+    /* Ajustes responsivos para o carrossel de botões */
+    .button-carousel-section {
+        padding: 10px 0;
+        margin: 15px 0; /* Ajuste de margem */
+    }
+
+    .buttons-wrapper {
+        animation-duration: 15s; /* Mais rápido em telas menores */
+        /* Se precisar quebrar linha para telas muito pequenas, considere: */
+        /* flex-wrap: wrap; justify-content: center; */
+    }
+
+    .carousel-button {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        margin: 0 6px;
+        gap: 6px;
+    }
+
+    .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        border-top: none;
+        border-left: 4px solid #824caf;
+        width: auto;
+        padding-top: 0;
+        padding-left: 30px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 50px;
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+    .timeline-marker {
+        top: 10px;
+        left: -14px;
+        transform: translateY(-50%);
+        margin-left: 0;
+    }
+
+    .timeline-item:hover .timeline-marker,
+    .timeline-item.active .timeline-marker {
+        transform: translateY(-50%) scale(1.2);
+    }
+
+    .timeline-date {
+        margin-top: 0;
+        margin-left: 20px;
+        display: inline-block;
+    }
+
+    /* Regras específicas para mobile para garantir que o texto apareça normalmente */
+    .image-caption #image-description {
+        white-space: normal; /* Permite quebrar linha no mobile */
+        width: auto; /* Ocupa a largura normal */
+        border-right: none; /* Remove o cursor piscante */
+        overflow: visible; /* Texto visível normalmente */
+    }
+    .typed-cursor { /* O Typed.js usa a classe 'typed-cursor' por padrão */
+        animation: none !important; /* Desativa a animação do cursor do Typed.js no mobile */
+        opacity: 0 !important; /* Garante que o cursor do Typed.js seja invisível no mobile */
+    }
+}

@@ -1,0 +1,709 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: black;
+    color: #ffff;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+
+/* gradient*/
+
+.image-gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.layer-blur {
+    height: 0;
+    width: 30rem;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    box-shadow: 0 0 700px 15px #ffff;
+    rotate: -30deg;
+    z-index: -1;
+}
+
+
+/*Container*/
+.container {
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/*header*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5rem;
+
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 200;
+
+}
+
+.highlight-purple {
+    color: #A020F0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-left: -5%;
+    z-index: 999;
+}
+
+nav a {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    transition: color 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    z-index: 999;
+
+}
+
+nav a:hover {
+    color: #A020F0;
+}
+
+.btn-signing {
+    z-index: 999;
+    margin-top: 30px;
+    position: relative;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 50px;
+    /* background: linear-gradient(to right, #656565, #7f42a7, #6600c5, #5300a0, #757575, #656565); */
+    background-size: 50%;
+    animation: animationGradient 2.5s linear infinite;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a50dcf;
+}
+
+@keyframes animationGradient {
+    to {
+        background-position: 200%;
+    }
+}
+
+.btn-signing:hover {
+    background-color: rgb(143, 16, 234);
+    color: #000;
+
+}
+
+
+.animated-gradient-text {
+    background: linear-gradient(270deg, #31035c, #6600c5, #7f42a7, #cfe8f0, #5300a0);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTextAnim 3s ease infinite;
+}
+
+@keyframes gradientTextAnim {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+
+
+
+/*BUTOON*/
+
+
+
+
+
+
+
+
+/*Main*/
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(90vh - 6rem);
+}
+
+.content {
+    max-width: 40rem;
+    margin-left: 10%;
+    z-index: 999;
+}
+
+.tag-box {
+    margin-top: 100px;
+    position: relative;
+    width: 18rem;
+    height: 2.5rem;
+    border-radius: 50px;
+    background: linear-gradient(to right, #656565, #7f42a7, #6600c5, #5300a0, #757575, #656565);
+    background-size: 200%;
+    animation: animationGradient 2.5s linear infinite;
+    box-shadow: 0 0 15px rgba(255, 255, 255, -0.3);
+}
+
+@keyframes animationGradient {
+    to {
+        background-position: 200%;
+    }
+}
+
+.tag-box .tag {
+    position: absolute;
+    inset: 3px 3px 3px 3px;
+    background-color: black;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.tag-box .tag:hover {
+    color: #5300a0;
+}
+
+.content h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin: 2rem 0;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(128, 128, 128, 0.418);
+}
+
+.description {
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    max-width: 35rem;
+    color: #656565;
+
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.btn-get-started {
+    text-decoration: none;
+    border: 1px solid #2a2a2a;
+    padding: 0.7rem 1.2rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: background-color 0.2s ease;
+}
+
+.btn-get-started:hover {
+    background-color: #1a1a1a;
+}
+
+.btn-signing-main {
+    text-decoration: none;
+    background-color: lightgray;
+    color: black;
+    padding: 0.6rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: background-color 0.2s ease;
+}
+
+.btn-signing-main:hover {
+    background-color: #757575;
+}
+
+.animacao3d {
+    position: absolute;
+    top: 0;
+    right: -30%;
+}
+
+.stats-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(to left, #3a3a3a 0%, #000000 55%);
+    border-top: 1px solid #2a2a2a;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    color: #fff;
+    min-width: 150px;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #A020F0;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 0.3rem;
+}
+
+.stat-unit {
+    font-size: 1rem;
+}
+
+.footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: #000;
+    color: #757575;
+    font-size: 0.9rem;
+    border-top: 1px solid #2a2a2a;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Tablet*/
+
+@media (max-width: 1300px) {
+    header {
+        padding: 1rem 0.5rem;
+    }
+
+    .content {
+        margin-top: 85%;
+    }
+
+    .animacao3d {
+        scale: 0.8;
+        top: -20%;
+        right: 2%;
+    }
+}
+
+/*mobile*/
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 0.1rem;
+    }
+
+    nav {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .btn-signing {
+        padding: 0.6rem 1.5rem;
+    }
+
+    .container {
+        margin-top: 25rem;
+    }
+
+    .animacao3d {
+        scale: 0.5;
+        top: -25%;
+        right: 0;
+    }
+
+    .content {
+        max-width: 30rem;
+        margin-left: 10%;
+    }
+
+    .tag-box {
+        width: 12rem;
+    }
+
+    .content h1 {
+        font-size: 2.5rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .btn-get-started {
+        font-size: 0.8rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    .btn-signing-main {
+        font-size: 0.8rem;
+        padding: 0.8rem 2rem;
+    }
+}
+
+
+
+/* Telas muito grandes (desktops de alta resolução) */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 120rem; /* Aumenta a largura máxima para telas maiores */
+    }
+
+    .animacao3d {
+        scale: 1.2;
+        right: -40%;
+    }
+}
+
+/* Desktops e Laptops (padrão) */
+@media (max-width: 1300px) {
+    header {
+        padding: 1rem 2rem; /* Ajuste do padding do cabeçalho */
+    }
+
+    .content {
+        margin-top: 0; /* Volta a margem normal, ajuste de acordo com a necessidade */
+        margin-left: 5%; /* Ajusta a margem para a esquerda */
+        max-width: 35rem; /* Reduz a largura máxima do conteúdo */
+    }
+
+    .content h1 {
+        font-size: 3.5rem; /* Reduz o tamanho da fonte do título */
+    }
+
+    .description {
+        font-size: 1.1rem; /* Reduz o tamanho da fonte da descrição */
+    }
+
+    .animacao3d {
+        scale: 0.7; /* Reduz a escala da animação */
+        top: -10%; /* Ajusta a posição vertical */
+        right: -10%; /* Ajusta a posição horizontal */
+        width: 80%; /* Ajusta a largura */
+        height: auto;
+    }
+
+    .stats-section {
+        gap: 2rem; /* Reduz o espaçamento entre os itens de estatísticas */
+        padding: 2rem 1rem; /* Ajusta o padding da seção de estatísticas */
+    }
+
+    .stat-item {
+        min-width: 120px; /* Reduz a largura mínima dos itens de estatísticas */
+    }
+}
+
+/* Tablets (landscape e portrait) e Laptops menores */
+@media (max-width: 1024px) {
+    header {
+        padding: 1rem 1rem;
+    }
+
+    .content {
+        margin-top: 25%; /* Desce o conteúdo para não sobrepor a animação */
+        margin-left: 5%;
+        max-width: 90%; /* Ocupa mais largura */
+        text-align: center; /* Centraliza o texto em tablets */
+    }
+
+    .content h1 {
+        font-size: 3rem;
+        margin: 1.5rem 0;
+    }
+
+    .description {
+        font-size: 1rem;
+        max-width: 100%; /* Permite que a descrição ocupe toda a largura disponível */
+    }
+
+    .animacao3d {
+        position: relative; /* Muda para relativo para fluir com o conteúdo */
+        margin: 0 auto; /* Centraliza a animação */
+        display: block; /* Garante que ela ocupe sua própria linha */
+        top: auto;
+        right: auto;
+        scale: 0.6;
+        width: 90%; /* Ajusta a largura */
+        height: auto;
+        max-width: 600px; /* Limita o tamanho máximo para não ficar muito grande */
+    }
+
+    main {
+        min-height: auto; /* Permite que a altura da main se ajuste ao conteúdo */
+        padding-top: 2rem; /* Adiciona um padding no topo */
+    }
+
+    .buttons {
+        justify-content: center; /* Centraliza os botões */
+    }
+
+    .stats-section {
+        flex-direction: column; /* Empilha os itens de estatísticas verticalmente */
+        gap: 1.5rem;
+    }
+
+    .stat-item {
+        min-width: unset; /* Remove a largura mínima para flexibilidade total */
+        width: 100%; /* Ocupa a largura total */
+    }
+}
+
+/* Smartphones (portrait e landscape) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: row; /* Mantém os itens do cabeçalho na mesma linha */
+        justify-content: space-between; /* Espaçamento entre logo e botão */
+        padding: 1rem 1rem; /* Ajuste do padding */
+    }
+
+    .logo img {
+        width: 80px; /* Reduz o tamanho do logo */
+        height: auto;
+    }
+
+    .btn-signing {
+        margin-top: 0; /* Remove a margem superior */
+        width: 4rem; /* Reduz o tamanho do botão */
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .btn-signing .fas {
+        font-size: 1rem; /* Ajusta o ícone */
+    }
+
+    nav {
+        display: none; /* Mantém a navegação oculta, ideal para menus hambúrguer */
+    }
+
+    .container {
+        margin-top: 0; /* Remove a margem superior do container para mobile */
+        padding: 0 1rem; /* Ajusta o padding do container */
+    }
+
+    .content {
+        margin-left: 0; /* Remove a margem esquerda */
+        max-width: 100%; /* Ocupa a largura total */
+        padding-top: 1rem; /* Adiciona um pouco de padding no topo */
+    }
+
+    .content h1 {
+        font-size: 2.2rem; /* Reduz mais o tamanho do título */
+        margin: 1rem 0;
+    }
+
+    .content h2 {
+        font-size: 1.2rem; /* Ajusta o subtítulo */
+    }
+
+    .description {
+        font-size: 0.9rem; /* Reduz o tamanho da descrição */
+        line-height: 1.4;
+    }
+
+    .tag-box {
+        width: 10rem; /* Reduz o tamanho da tag-box */
+        height: 2rem;
+        margin-top: 50px;
+    }
+
+    .tag-box .tag {
+        font-size: 0.8rem;
+    }
+
+    .buttons {
+        flex-direction: column; /* Empilha os botões verticalmente */
+        gap: 0.8rem;
+        margin-top: 2rem;
+    }
+
+    .btn-get-started,
+    .btn-signing-main {
+        width: 100%; /* Faz com que os botões ocupem a largura total */
+        text-align: center;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .animacao3d {
+        scale: 0.4; /* Reduz ainda mais a escala da animação */
+        width: 100%; /* Ocupa a largura total */
+        height: auto;
+        max-width: 400px; /* Limita o tamanho máximo em mobile */
+        margin-top: -50px; /* Ajusta a posição para cima */
+    }
+
+    .stats-section {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .footer {
+        padding: 1rem 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 480px) {
+    .content h1 {
+        font-size: 1.8rem;
+    }
+
+    .content h2 {
+        font-size: 1rem;
+    }
+
+    .description {
+        font-size: 0.85rem;
+    }
+
+    .tag-box {
+        width: 8rem;
+        height: 1.8rem;
+    }
+
+    .tag-box .tag {
+        font-size: 0.75rem;
+    }
+
+    .btn-signing {
+        width: 3.5rem;
+        height: 1.8rem;
+        font-size: 0.7rem;
+    }
+
+    .btn-signing .fas {
+        font-size: 0.9rem;
+    }
+
+    .animacao3d {
+        scale: 0.3;
+        max-width: 300px;
+    }
+}
+
+/* Telas muito pequenas (iPhone SE, etc.) */
+@media (max-width: 375px) {
+    .content h1 {
+        font-size: 1.5rem;
+    }
+
+    .content h2 {
+        font-size: 0.9rem;
+    }
+
+    .description {
+        font-size: 0.8rem;
+    }
+
+    .btn-get-started,
+    .btn-signing-main {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .animacao3d {
+        scale: 0.25;
+        max-width: 250px;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+}
